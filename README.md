@@ -14,9 +14,20 @@ This repository contains:
 
 ## 🚀 How to Use This Repository
 1. **Clone the Repository:**  
-git clone https://github.com/dara01x/ai_course.git
+    ```bash
+    git clone https://github.com/dara01x/ai_course.git
+    ```
 2. **Navigate to the directory:**  
-cd AI_Course_UoD
+    ```bash
+    cd AI_Course_UoD
+    ```
+3. **Install Python and Required Libraries:**
+    - Make sure you have [Python](https://www.python.org/downloads/) installed.
+    - Install [pip](https://pip.pypa.io/en/stable/installation/) if it's not already installed.
+    - Install the required libraries:
+      ```bash
+      pip install scikit-learn
+      ```
 
 ## 🤝 Contributing
 - If you're a classmate, feel free to add your notes or solutions.  
