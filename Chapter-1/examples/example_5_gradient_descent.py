@@ -1,6 +1,18 @@
 """
 Example 5 - Gradient Descent
 Minimize f(x) = x³ - 3x² - x using gradient descent with α = 0.05
+
+NOTE: This example has been enhanced from the original lecture version.
+CHANGES: 
+1. Added overflow protection with try-catch blocks
+2. Added divergence detection for large values  
+3. Used adaptive learning rates for different starting points
+4. Fixed matplotlib plotting format strings
+REASONS: 
+- The original example would crash with OverflowError when starting from x=-1.0
+- Gradient descent can diverge with poor learning rate selection
+- Different starting points may require different learning rates for stability
+- Demonstrates both successful convergence and divergence scenarios
 """
 
 import numpy as np
@@ -36,8 +48,19 @@ def gradient_descent(start_x, learning_rate, max_iterations=100, tolerance=1e-6)
         x_new = x - learning_rate * gradient
         
         # Calculate function values
-        f_x = f(x)
-        f_x_new = f(x_new)
+        try:
+            f_x = f(x)
+            f_x_new = f(x_new)
+        except OverflowError:
+            print(f"OverflowError at iteration {i+1}: Values too large, stopping gradient descent")
+            print(f"x = {x}, gradient = {gradient}")
+            break
+        
+        # Check for divergence (values getting too large)
+        if abs(x_new) > 1e6 or abs(f_x_new) > 1e6:
+            print(f"Divergence detected at iteration {i+1}: Values too large, stopping")
+            print(f"x = {x:.6f}, x_new = {x_new:.6f}")
+            break
         
         print(f"Iteration {i+1:2d}: x = {x:8.6f}, f(x) = {f_x:8.6f}, f'(x) = {gradient:8.6f}")
         
@@ -54,14 +77,17 @@ def gradient_descent(start_x, learning_rate, max_iterations=100, tolerance=1e-6)
     
     print("-" * 50)
     print(f"Final x: {x:.6f}")
-    print(f"Final f(x): {f(x):.6f}")
-    print(f"Final f'(x): {df_dx(x):.6f}")
+    try:
+        print(f"Final f(x): {f(x):.6f}")
+        print(f"Final f'(x): {df_dx(x):.6f}")
+    except OverflowError:
+        print(f"Final values too large to display")
     
     return x, history
 
 # Run gradient descent with different starting points
 starting_points = [2.0, -1.0, 4.0]
-learning_rate = 0.05
+learning_rates = [0.05, 0.01, 0.05]  # Use smaller learning rate for x=-1.0
 
 plt.figure(figsize=(15, 10))
 
@@ -69,12 +95,12 @@ plt.figure(figsize=(15, 10))
 x_range = np.linspace(-2, 5, 1000)
 y_range = f(x_range)
 
-for idx, start_x in enumerate(starting_points):
+for idx, (start_x, lr) in enumerate(zip(starting_points, learning_rates)):
     print(f"\n{'='*60}")
-    print(f"GRADIENT DESCENT STARTING FROM x = {start_x}")
+    print(f"GRADIENT DESCENT STARTING FROM x = {start_x} (α = {lr})")
     print(f"{'='*60}")
     
-    final_x, history = gradient_descent(start_x, learning_rate)
+    final_x, history = gradient_descent(start_x, lr)
     
     # Plot results
     plt.subplot(2, 2, idx + 1)
@@ -100,13 +126,13 @@ plt.subplot(2, 2, 4)
 plt.plot(x_range, y_range, 'b-', linewidth=3, label='f(x) = x³ - 3x² - x')
 
 colors = ['red', 'green', 'orange']
-for idx, start_x in enumerate(starting_points):
-    _, history = gradient_descent(start_x, learning_rate)
+for idx, (start_x, lr) in enumerate(zip(starting_points, learning_rates)):
+    _, history = gradient_descent(start_x, lr)
     x_history = np.array(history['x'])
     y_history = np.array(history['f_x'])
     
-    plt.plot(x_history, y_history, f'{colors[idx][0]}o-', markersize=4, 
-             linewidth=1.5, alpha=0.7, label=f'Start: {start_x}')
+    plt.plot(x_history, y_history, 'o-', color=colors[idx], markersize=4, 
+             linewidth=1.5, alpha=0.7, label=f'Start: {start_x} (α={lr})')
 
 plt.xlabel('x')
 plt.ylabel('f(x)')

@@ -1,10 +1,15 @@
 """
 Homework 1 - Load Other Datasets and Display Their Sizes
 Modify the example code to load different datasets and display their sizes
+
+NOTE: This homework has been modified from the original version.
+CHANGE: Removed 'load_boston' from the imports
+REASON: load_boston was deprecated and removed from scikit-learn 1.2+ due to ethical concerns
+        about the dataset's racial bias. Using fetch_california_housing as alternative housing dataset.
 """
 
 from sklearn.datasets import (
-    load_boston, load_breast_cancer, load_diabetes, 
+    load_breast_cancer, load_diabetes, 
     load_digits, load_iris, fetch_california_housing,
     load_wine, load_linnerud
 )
@@ -50,7 +55,6 @@ print("="*80)
 # List of datasets to load
 datasets_info = [
     ("Iris", load_iris),
-    ("Boston Housing", load_boston),
     ("Breast Cancer", load_breast_cancer),
     ("Diabetes", load_diabetes),
     ("Digits", load_digits),

@@ -2,6 +2,16 @@
 Example 9 - Softmax Activation Function
 Demonstrate softmax function for multi-class classification
 Chapter example: z = [5, 1, 0, 2]
+
+NOTE: This example has been enhanced from the original lecture version.
+CHANGES:
+1. Added numerical stability by subtracting max value before exponentiation
+2. Enhanced with comprehensive visualizations and practical examples
+3. Added temperature scaling and multi-class classification examples
+REASONS:
+- The original softmax can cause overflow for large input values
+- Subtracting max(z) prevents numerical overflow while maintaining mathematical correctness
+- Enhanced educational content shows practical applications and variations
 """
 
 import numpy as np

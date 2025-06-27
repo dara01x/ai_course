@@ -1,6 +1,18 @@
 """
 Example 10 - Regression Evaluation Metrics
 Demonstrate how to use various metrics to assess regression algorithm performance
+
+NOTE: This example has been significantly enhanced from the original lecture version.
+CHANGES:
+1. Added comprehensive metric calculations with manual implementations
+2. Enhanced visualizations showing residual analysis and metric comparisons
+3. Added practical examples with different types of errors and noise
+4. Added detailed explanations of when to use each metric
+REASONS:
+- Provides complete understanding of regression metrics beyond basic definitions
+- Shows how different metrics respond to different types of errors
+- Includes both sklearn implementations and manual calculations for learning
+- Helps students choose appropriate metrics for different scenarios
 """
 
 import numpy as np

@@ -1,6 +1,21 @@
 """
 Example 11 - Confusion Matrix for Classification Evaluation
 Demonstrate confusion matrix and classification metrics calculation
+
+NOTE: This example is significantly enhanced from the original lecture version.
+CHANGES:
+1. Added comprehensive visualization with 12 different plots
+2. Added manual metric calculations with step-by-step explanations
+3. Added multi-class confusion matrix example
+4. Added threshold analysis and ROC-like curve
+5. Added detailed error analysis and prediction type visualization
+6. Added extensive educational comments and interpretations
+REASONS:
+- The original lecture likely showed basic confusion matrix concepts
+- Enhanced version provides complete understanding of classification metrics
+- Includes both binary and multi-class scenarios
+- Provides visual and mathematical intuition for all key concepts
+- Helps students understand when to use different metrics
 """
 
 import numpy as np

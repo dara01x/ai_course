@@ -1,6 +1,15 @@
 """
 Example 6 - Binary Cross-Entropy (BCE) Loss
 Demonstrate how to use BCE in binary classification
+
+NOTE: This example has been enhanced from the original lecture version.
+CHANGES:
+1. Fixed array broadcasting issue in probability distribution visualization
+2. Enhanced probability generation for good vs bad model comparison
+REASONS:
+- The original np.where usage caused broadcasting errors with incompatible array shapes
+- Fixed by using proper indexing with boolean masks for different classes
+- Ensures the visualization works correctly for all sample sizes
 """
 
 import numpy as np
@@ -109,9 +118,14 @@ plt.grid(True, alpha=0.3)
 plt.subplot(2, 3, 4)
 n_samples = 100
 y_true = np.random.choice([0, 1], n_samples)
-y_pred_good = np.where(y_true == 1, 
-                       np.random.beta(8, 2, np.sum(y_true)), 
-                       np.random.beta(2, 8, np.sum(y_true == 0)))
+
+# Create good predictions: high probability for class 1, low for class 0
+y_pred_good = np.zeros(n_samples)
+mask_positive = y_true == 1
+mask_negative = y_true == 0
+y_pred_good[mask_positive] = np.random.beta(8, 2, np.sum(mask_positive))
+y_pred_good[mask_negative] = np.random.beta(2, 8, np.sum(mask_negative))
+
 y_pred_bad = np.random.uniform(0.3, 0.7, n_samples)
 
 bce_good = binary_cross_entropy(y_true, y_pred_good)

@@ -1,6 +1,15 @@
 """
 Example 7 - Sigmoid Activation Function in Binary Classification
 Demonstrate how to use sigmoid activation function in binary classification
+
+NOTE: This example has been enhanced from the original lecture version.
+CHANGES:
+1. Added overflow protection by clipping z values to prevent exp() overflow
+2. Enhanced visualizations and detailed mathematical explanations
+REASONS:
+- The original sigmoid function can cause overflow errors for large input values
+- np.clip(-500, 500) prevents numerical instability while maintaining function behavior
+- Enhanced educational content provides deeper understanding of the sigmoid function
 """
 
 import numpy as np

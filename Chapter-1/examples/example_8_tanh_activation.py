@@ -1,6 +1,16 @@
 """
 Example 8 - Tanh (Hyperbolic Tangent) Activation Function
 Demonstrate the tanh activation function and compare with sigmoid
+
+NOTE: This example has been enhanced from the original lecture version.
+CHANGES:
+1. Added comprehensive comparisons with sigmoid and other activation functions
+2. Enhanced visualizations showing derivatives and mathematical properties
+3. Added practical examples and use cases
+REASONS:
+- Provides deeper understanding of activation functions beyond basic definition
+- Shows the relationship between different activation functions
+- Includes practical considerations for choosing activation functions
 """
 
 import numpy as np
