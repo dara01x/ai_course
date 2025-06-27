@@ -99,7 +99,7 @@ all_tree_predictions = np.array([tree.predict(xtest) for tree in model.estimator
 print("Sample\tActual\tPredicted\tVoting Pattern")
 print("-" * 50)
 for i in range(min(5, len(ytest))):
-    votes = all_tree_predictions[:, i]
+    votes = all_tree_predictions[:, i].astype(int)  # Convert to int for bincount
     vote_counts = np.bincount(votes, minlength=3)
     actual_name = iris.target_names[ytest[i]]
     pred_name = iris.target_names[yp[i]]
