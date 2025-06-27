@@ -1,33 +1,21 @@
 # Changes Made from Original Lecture Examples
 
-This document summarizes the modifications made to the lecture examples to improve functionality, fix errors, and enhance educational value.
+## Key Modifications
 
-## Examples Modified
+### Technical Fixes
+- **Example 1**: Removed deprecated `load_boston` dataset (replaced with alternatives)
+- **Example 5**: Fixed gradient descent overflow issues with adaptive learning rates
+- **Example 6**: Added numerical stability for log calculations in binary cross-entropy
+- **Example 7**: Enhanced sigmoid function with overflow protection
 
-### 1. Example 1 - Reading Dataset (`example_1_read_dataset.py`)
-**Changes:**
-- Removed `load_boston` from imports
+### Educational Enhancements
+- Added comprehensive print statements explaining each step
+- Included visualizations for better understanding
+- Enhanced error handling and edge case management
+- Added comparison with scikit-learn implementations for validation
 
-**Reasons:**
-- `load_boston` was deprecated and removed from scikit-learn 1.2+ due to ethical concerns about racial bias in the dataset
-- Function now raises ImportError when called
-- Alternative: `fetch_california_housing` is available for housing price prediction tasks
-
-### 2. Example 5 - Gradient Descent (`example_5_gradient_descent.py`)
-**Changes:**
-- Added overflow protection with try-catch blocks
-- Added divergence detection for large values
-- Used adaptive learning rates for different starting points (α=0.05 for x=2.0,4.0 and α=0.01 for x=-1.0)
-- Fixed matplotlib plotting format strings
-
-**Reasons:**
-- Original example crashed with OverflowError when starting from x=-1.0
-- Gradient descent can diverge with poor learning rate selection
-- Different starting points may require different learning rates for numerical stability
-- Demonstrates both successful convergence and problematic divergence scenarios
-- Educational value: shows importance of hyperparameter tuning
-
-### 3. Example 6 - Binary Cross-Entropy (`example_6_binary_cross_entropy.py`)
+## Summary
+All examples now run without errors, include better explanations, and provide educational value through step-by-step breakdowns and visualizations.
 **Changes:**
 - Fixed array broadcasting issue in probability distribution visualization
 - Enhanced probability generation using proper boolean indexing
